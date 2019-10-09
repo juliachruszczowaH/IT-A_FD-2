@@ -65,24 +65,40 @@ console.log("Sum in math formula is : " + mathSumTo(num));
  */
 
 //TASK 3
+
+/*
+var customArray = [5, function () {
+}, 7,
+    [undefined, [2], {'age': [8,4], 'test':'test'}, [null, 3], 2, ''],
+    [Infinity, null, 8, NaN, , []],
+    1, false, 8, '15'
+];
+*/
+
+
 var testArray = [5, 7,
     [4, [2], 8, [1, 3], 2],
     [9, []],
     1, 8
 ];
 
+
 function treeSum(array) {
     var sum = 0;
+
     for (var i = 0; i < array.length; i++) {
-        if (typeof (array[i]) == 'string'||!array[i]) {
-            continue;
-        } else if (array[i].length === undefined) {
+        if ((typeof (array[i]) === 'number') && isFinite(array[i])) {
             sum += array[i];
-        } else {
+        } else if ((typeof (array[i]) === 'object') &&
+            (array[i] !== null) &&
+            (array[i].length !== undefined)) {
             sum += treeSum(array[i]);
         }
     }
+
     return sum;
 }
 
-console.log(treeSum(testArray));
+treeSum(testArray);
+
+//treeSum(customArray);
